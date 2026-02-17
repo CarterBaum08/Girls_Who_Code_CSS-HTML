@@ -1,54 +1,75 @@
 body{
-  display:flex;
-  justify-content: center;
-  align-items: center;
-}
-.container{
-  background-color: #f77f7f;
-  width:500px;
+  background-color: lightgoldenrodyellow;
   height:1000px;
-  border-radius: 10px;
-  position:absolute;
-  top:50px;
-  left:50px;
-  padding-top:10px;
-}
-
-
-.container-border{
-  background-color: red;
-  width: 600px;
-  height:1100px;
-  position: relative;
-  border-radius: 10px;
-}
-
-.container h1{
-  padding:0;
-  margin:0;
+  font-family:sans-serif;/*all sub elements will inherit*/
   text-align: center;
-  color:white;
-  font-family: sans-serif;
-}
 
-.container p{
-  color:white;
-  text-align: center;
-  font-family: sans-serif
 }
-.choice{
-  width:50%;
-}
-form{
-  display:flex;
-  text-align: center;
-  flex-direction: column;
-}
+.grid{/*grid containing the cards*/
+  display:grid;
+  grid-template-columns: repeat(6, 200px);
+  grid-template-rows: repeat(2, 200px);
+  gap: 10px;
+  justify-content: center;/*horizontal align*/
+  margin-top:20px;
 
-form label{
-  font-family: sans-serif;
+}
+h1{/*styling for the header*/
+  display:inline;
+  width:auto;
   color:gold;
-  padding:2px;
-  border-radius: 2px;
-  background-color:orange;
+  background-color: white;
+  padding:10px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0,0,0,.2);/*box-shadow effect*/
 }
+
+.card{
+  position:relative; /*important for us to position elements inside */
+  cursor:pointer;/*User knows to click*/
+  height:200px;
+  width: 200px;
+}
+.toggle{
+  display:none;/*hides the checkbox*/
+}
+
+/*applies styles to both classes*/
+.front, .fortune{
+  position:absolute;/*We want the divs to be stacked on top of eachother*/
+  inset:0; /*take up the full space of the container*/
+  font-weight:bold;
+  text-align: center;
+  display:grid;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease;
+  font-size:20px;
+  border-radius: 8px;
+  
+}
+
+.front{
+  background-color:tomato;
+  color:white;
+  border:2px solid red;
+}
+
+.fortune{
+  background-color: white;
+  color:tomato;
+  border:2px solid gold;
+  opacity: 0; /*hides fortune for now*/
+}
+
+/* + combinator selects the adjacent sibling */
+.toggle:checked + .front{
+  opacity: 0;
+}
+
+.toggle:checked + .front + .fortune {
+  opacity: 1;
+}
+
+
+
